@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POKEAPI harjoitus</title>
 </head>
-<body>
+<body onload="loadCache()">
 
     <h1>PokeAPI-harjoitus</h1>
+
+    <ul id="cache"></ul>
+
     <input type="text" placeholder="pokemon name" id="name" />
     <button onclick="requestPokemon()">Search</button>
     <img src="" id="artwork"/>

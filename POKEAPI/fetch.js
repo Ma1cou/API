@@ -1,5 +1,28 @@
 let pokemonName= "";
 
+  function loadCache() {
+    var cache = document.getElementById("cache");
+    cache.innerHTML = "";
+
+      for (let index = 0; index < localStorage.length; index++) {
+        let name = localStorage.key(index)
+        let nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
+        cache.innerHTML +=
+        `<li><a href=\"#\" onclick=\"requestPokemon(\"' + name + '\")\">'${nameUpper}</a></li>`;
+
+
+        var listItem = document.createElement("li");
+        var link = document.createElement("a");
+        listItem.appendChild(link);
+        listItem.innerHTML = nameUpper;
+        link.addEventListener("onclick", requestPokemon(name));
+        cache.appendChild(listItem);
+        //`<li><a href="#" onclick="requestPokemon(\"${name}\")">${nameUpper}</a></li>`;
+        
+      }
+  };
+  
+
     function displayPokemon(pokemonData) 
     {
         document.getElementById("result").innerHTML = pokemonData;
@@ -14,9 +37,9 @@ let pokemonName= "";
 
 
         document.getElementById("title").innerHTML = nameCapitalized;
-        document.getElementById("xp").innerHTML = "Base XP: " + pokemon.base_experience;
-        document.getElementById("weight").innerHTML = "weight" + pokemonData.weight; + " lbs";
-        document.getElementById("height").innerHTML = "height" + pokemonData.height; + " ft";
+        document.getElementById("xp").innerHTML = "Base XP: " + pokemonData.base_experience;
+        document.getElementById("weight").innerHTML = "Weight: " + pokemonData.weight; + " lbs";
+        document.getElementById("height").innerHTML = "Height: " + pokemonData.height; + " ft";
 
 
         document.getElementById("stats").innerHTML = "";
@@ -46,8 +69,12 @@ let pokemonName= "";
       displayPokemon(pokemon);
     }
 
-    function requestPokemon() {
+    function requestPokemon(cachedName) {
 
+      if(cachedName !== null) {
+        pokemonName = cachedName;
+      }
+      else
         pokemonName = document.getElementById('name').value;
         var storedPokemon = localStorage.getItem(pokemonName);
   
