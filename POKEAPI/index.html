@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="PokeStyle.css">
     <title>POKEAPI harjoitus</title>
 </head>
 <body onload="loadCache()">
@@ -11,11 +12,18 @@
     <h1>PokeAPI-harjoitus</h1>
 
     <ul id="cache"></ul>
+    <br>
 
-    <input type="text" placeholder="pokemon name" id="name" />
-    <button onclick="requestPokemon()">Search</button>
+    <input type="text" placeholder="Pokemon Name:" id="name" />
+    <br>
+    <br>
+    <button onclick="requestPokemon()">SEARCH</button>
+    <br>
+    <br>
+    <button onclick="">RANDOM</button>
+    <br>
+    <br>
     <img src="" id="artwork"/>
-    <p id="result"></p>
 
     <h2 id="title"></h2>
     <p id="xp"></p>
@@ -23,9 +31,9 @@
     <p id="height"></p>
 
 
-    <div id="stats"></div>
-    <div id="abilities"></div>
-    <div id="moves"></div>
+    <ol id="stats"></ol>
+    <ol id="abilities"></ol>
+    <ol id="moves"></ol>
 
 
 

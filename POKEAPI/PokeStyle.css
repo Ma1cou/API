@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Heavitas";
+    src: url("Heavitas.ttf");
+}
+
+body {
+    text-align: center;
+    background-color: rgb(138, 211, 235);    
+}
+#artwork {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    
+}
+h1 {
+    text-align:center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+    font-size: 2vw;
+}
+
+ol {
+    display: inline-block;
+    text-align: left;
+}
+
+#xp, #weight, #height {
+    font-weight: bolder;
+}
+
+#name {
+    background-color: rgb(73, 110, 122);
+    font-size: 1vw;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    font-family: heavitas;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+::placeholder {
+    color: rgb(255, 79, 79);
+    text-align: center;
+}
+
+#name:hover {
+    transition: all 0.1s ease-in;
+    transform: scale(1.05);
+}
+
+button {
+    background-color: rgb(138, 211, 235);
+    font-family: Heavitas;
+    color: rgb(255, 79, 79);
+    border: none;
+    font-size: 2vw;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.35) 2px 5px 15px;
+    opacity: 100%;
+}
+
+button:hover {
+    transition: all 0.3s ease-in;
+    transform: scale(1.1);
+}
+
+ul {
+    text-align: center;
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+#localpokemons {
+    font-family: heavitas;
+    color: rgb(255, 79, 79);
+}

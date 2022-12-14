@@ -8,26 +8,13 @@ let pokemonName= "";
         let name = localStorage.key(index)
         let nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
         cache.innerHTML +=
-        `<li><a href=\"#\" onclick=\"requestPokemon(\"' + name + '\")\">'${nameUpper}</a></li>`;
-
-
-        var listItem = document.createElement("li");
-        var link = document.createElement("a");
-        listItem.appendChild(link);
-        listItem.innerHTML = nameUpper;
-        link.addEventListener("onclick", requestPokemon(name));
-        cache.appendChild(listItem);
-        //`<li><a href="#" onclick="requestPokemon(\"${name}\")">${nameUpper}</a></li>`;
-        
+        `<li id="localpokemons" <a href="#" onclick="requestPokemon('${name}')">${nameUpper}</a></li>`;   
       }
   };
-  
 
     function displayPokemon(pokemonData) 
     {
-        document.getElementById("result").innerHTML = pokemonData;
-        console.log(pokemonData);
-        let imageurl = pokemonData.sprites.other.dream_world.front_default;
+        let imageurl = pokemonData['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
         document.getElementById("artwork").setAttribute("src", imageurl);
         //document.getElementById("stats").innerHTML = pokemonData.stats;
         let firstLetter = pokemonData.name.charAt(0);
@@ -60,23 +47,24 @@ let pokemonName= "";
           document.getElementById("moves").innerHTML +=
           `<li>${move.move.name}</li>`
         })
-
+        loadCache();
     }
 
     function storePokemon(pokemon) {
-      console.log("Tallennetaan:" + pokemon);
+      console.log("Tallennetaan: " + pokemon);
       window.localStorage.setItem(pokemonName, JSON.stringify(pokemon));
       displayPokemon(pokemon);
     }
 
-    function requestPokemon(cachedName) {
+    function requestPokemon(cachedName = "") {
 
-      if(cachedName !== null) {
+      if(cachedName !== "") {
         pokemonName = cachedName;
       }
       else
         pokemonName = document.getElementById('name').value;
-        var storedPokemon = localStorage.getItem(pokemonName);
+        
+  var storedPokemon = localStorage.getItem(pokemonName);
   
   if(localStorage.getItem(pokemonName) !== null) {
     console.log("Pokemon löytyi localStoragesta! Ladataan...")
@@ -90,5 +78,9 @@ let pokemonName= "";
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
     .then(response => response.json())
     .then(data => storePokemon(data));
+  }
+
+  function randomPokemon() {
+    
   }
 }
