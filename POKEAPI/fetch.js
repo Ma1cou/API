@@ -28,8 +28,15 @@ let pokemonName= "";
         document.getElementById("weight").innerHTML = "Weight: " + pokemonData.weight; + " lbs";
         document.getElementById("height").innerHTML = "Height: " + pokemonData.height; + " ft";
 
+        document.getElementById("types").innerHTML = "";
+
+        pokemonData.types.forEach(type => {
+          document.getElementById("types").innerHTML += `<p>${type.type.name}</p>`;
+        });
+
 
         document.getElementById("stats").innerHTML = "";
+        document.getElementById("stats").innerHTML += "<h3>Stats</h3>";
         for (let index = 0; index < pokemonData.stats.length; index++) {
           var stat = pokemonData.stats[index];
           document.getElementById("stats").innerHTML +=
@@ -37,6 +44,7 @@ let pokemonName= "";
         }
 
         document.getElementById("abilities").innerHTML = "";
+        document.getElementById("abilities").innerHTML += "<h3>Abilities</h3>";
         pokemonData.abilities.forEach(ability => {
           document.getElementById("abilities").innerHTML +=
           `<li>${ability.ability.name}</li>`
@@ -52,7 +60,7 @@ let pokemonName= "";
 
     function storePokemon(pokemon) {
       console.log("Tallennetaan: " + pokemon);
-      window.localStorage.setItem(pokemonName, JSON.stringify(pokemon));
+      window.localStorage.setItem(pokemon.name, JSON.stringify(pokemon));
       displayPokemon(pokemon);
     }
 
@@ -79,8 +87,24 @@ let pokemonName= "";
     .then(response => response.json())
     .then(data => storePokemon(data));
   }
+}
+function randomPokemon() {
+  console.log("Haetaan satunnainen Pokemon PokeApista...");
 
-  function randomPokemon() {
-    
-  }
+  fetch(`https://pokeapi.co/api/v2/pokemon`)
+  .then(response => response.json())
+  .then(data => {
+    let allPokemonCount = data.count;
+    console.log("Pokemoneja yhteensä: " + allPokemonCount);
+    let randomPokemonId = Math.floor(Math.random() * (allPokemonCount -1));
+    console.log("Arvottu id :" + randomPokemonId);
+    fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonId}`)
+    .then(response => response.json())
+    .then(data => {
+      storePokemon(data);
+
+    });
+  });
+
+
 }
