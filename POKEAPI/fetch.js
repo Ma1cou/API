@@ -49,13 +49,17 @@ let pokemonName= "";
           document.getElementById("abilities").innerHTML +=
           `<li>${ability.ability.name}</li>`
         });
+        /*
 
         document.getElementById("moves").innerHTML = "";
         pokemonData.moves.forEach(move => {
           document.getElementById("moves").innerHTML +=
           `<li>${move.move.name}</li>`
         })
+          */
+        displayMoves(pokemonData);
         loadCache();
+
     }
 
     function storePokemon(pokemon) {
